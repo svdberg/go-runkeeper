@@ -1,7 +1,9 @@
 package runkeeper
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -26,7 +28,8 @@ const (
 	ContentTypeWeightSet                = "application/vnd.com.runkeeper.WeightSet+json"
 )
 const (
-	ContentTypeNewSleep = "application/vnd.com.runkeeper.NewSleep+json"
+	ContentTypeNewSleep    = "application/vnd.com.runkeeper.NewSleep+json"
+	ContentTypeNewActivity = "application/vnd.com.runkeeper.NewFitnessActivity+json"
 )
 
 const baseUrl = "https://api.runkeeper.com"
@@ -56,9 +59,13 @@ func parseJsonResponse(resp *http.Response, result interface{}) error {
 	return json.Unmarshal(body, result)
 }
 
-func (self *Client) createBaseRequest(method string, url string, acceptContentType string, body io.Reader) (*http.Request, error) {
+func (self *Client) createBaseRequest(method string, url string, contentType string, body io.Reader) (*http.Request, error) {
 	req, err := http.NewRequest(method, baseUrl+url, body)
-	req.Header.Add("Accept", acceptContentType)
+	if method != "POST" {
+		req.Header.Add("Accept", contentType)
+	} else {
+		req.Header.Add("Content-Type", contentType)
+	}
 	req.Header.Add("Authorization", "Bearer "+self.AccessToken)
 	if err != nil {
 		return nil, err
@@ -131,4 +138,27 @@ func (self *Client) GetFitnessActivity(activityUri string, userParams *Params) (
 		return nil, err
 	}
 	return &activity, nil
+}
+
+func (self *Client) PostNewFitnessActivity(activity *FitnessActivity) (string, error) {
+	payload, err := json.Marshal(activity)
+	fmt.Printf("JSON: %s", payload)
+	req, err := self.createBaseRequest("POST", "/fitnessActivities", ContentTypeNewActivity, bytes.NewBuffer(payload))
+	fmt.Printf("%s\n", req)
+	if err != nil {
+		return "", err
+	}
+
+	resp, err := self.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	if resp.Status == "201 Created" {
+		return resp.Header.Get("Location"), nil
+	}
+
+	return "", fmt.Errorf("Activity not created, no 201 returned, got %s", resp.Status)
+
 }

@@ -1,6 +1,9 @@
 package runkeeper
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 /*
 {
@@ -131,6 +134,12 @@ func (self *Time) UnmarshalJSON(data []byte) (err error) {
 		*self = Time(t)
 	}
 	return nil
+}
+
+func (self *Time) MarshalJSON() ([]byte, error) {
+	//Mon Jan 2 15:04:05 -0700 MST 2006
+	str := fmt.Sprintf("\"%s\"", time.Time(*self).Format("Mon, 2 Jan 2006 15:04:05"))
+	return []byte(str), nil
 }
 
 /*
