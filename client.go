@@ -140,7 +140,7 @@ func (self *Client) GetFitnessActivity(activityUri string, userParams *Params) (
 	return &activity, nil
 }
 
-func (self *Client) PostNewFitnessActivity(activity *FitnessActivity) (string, error) {
+func (self *Client) PostNewFitnessActivity(activity *FitnessActivityNew) (string, error) {
 	payload, err := json.Marshal(activity)
 	fmt.Printf("JSON: %s", payload)
 	req, err := self.createBaseRequest("POST", "/fitnessActivities", ContentTypeNewActivity, bytes.NewBuffer(payload))
