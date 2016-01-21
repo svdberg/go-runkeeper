@@ -76,6 +76,7 @@ type FitnessActivityFeed struct {
 type FitnessActivity struct {
 	Type          string  `json:"type"`
 	StartTime     Time    `json:"start_time"`
+	UtcOffset     int     `json:"utc_offset"`
 	TotalDistance float64 `json:"total_distance"`
 	Duration      float64 `json:"duration"`
 	Source        string  `json:"source"`
@@ -126,6 +127,8 @@ type FitnessActivityNew struct {
 	TotalDistance    float64     `json:"total_distance"`
 	Duration         float64     `json:"duration"`
 	AverageHeartRate int         `json:"average_heart_rate"`
+	Source           string      `json:"source"`
+	EntryMode        string      `json:"entry_mode"`
 	HeartRate        []HeartRate `json:"heart_rate"`
 	TotalCalories    float64     `json:"total_calories"`
 	Notes            string      `json:"notes"`
@@ -193,7 +196,7 @@ func (self *Time) UnmarshalJSON(data []byte) (err error) {
 
 func (self *Time) MarshalJSON() ([]byte, error) {
 	//Mon Jan 2 15:04:05 -0700 MST 2006
-	str := fmt.Sprintf("\"%s\"", time.Time(*self).Format("Mon, 2 Jan 2006 15:04:05"))
+	str := fmt.Sprintf("\"%s\"", time.Time(*self).Format("Mon, _2 Jan 2006 15:04:05"))
 	return []byte(str), nil
 }
 
