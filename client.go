@@ -14,7 +14,7 @@ import (
 	"time"
 
 	timez "4d63.com/tz"
-	latlong "github.com/svdberg/syncmysport-runkeeper/Godeps/_workspace/src/github.com/bradfitz/latlong"
+	latlong "github.com/bradfitz/latlong"
 )
 
 const (

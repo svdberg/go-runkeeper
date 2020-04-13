@@ -1,0 +1,9 @@
+4d63.com/embedfiles v0.0.0-20190311033909-995e0740726f/go.mod h1:HxEsUxoVZyRxsZML/S6e2xAuieFMlGO0756ncWx1aXE=
+4d63.com/tz v1.1.0 h1:Hi58WbeFjiUH4XOWuCpl5iSzuUuw1axZzTqIfMKPKrg=
+4d63.com/tz v1.1.0/go.mod h1:SHGqVdL7hd2ZaX2T9uEiOZ/OFAUfCCLURdLPJsd8ZNs=
+github.com/bradfitz/latlong v0.0.0-20170410180902-f3db6d0dff40 h1:wsnz4B2CSHJ09pwtMReU/GRqWDsI7XSasq7Nphem3Xk=
+github.com/bradfitz/latlong v0.0.0-20170410180902-f3db6d0dff40/go.mod h1:ZcXX9BndVQx6Q/JM6B8x7dLE9sl20S+TQsv4KO7tEQk=
+github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
+github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/svdberg/syncmysport-runkeeper v0.0.0-20200413104922-8b3f4d1aa9b6 h1:JyUE/OuXOsZ5v4vL8TUEwpucOeJEgKQD3sbmuKavmtY=
+github.com/svdberg/syncmysport-runkeeper v0.0.0-20200413104922-8b3f4d1aa9b6/go.mod h1:KF6wNhA1W6MQd5lqPVfMaeg72uL2ploxdSFiRKnxCZo=
