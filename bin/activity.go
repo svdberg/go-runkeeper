@@ -1,6 +1,6 @@
 package main
 
-import runkeeper "github.com/c9s/go-runkeeper"
+import runkeeper "github.com/svdberg/syncmysport-runkeeper/Godeps/_workspace/src/github.com/c9s/go-runkeeper"
 import "github.com/davecgh/go-spew/spew"
 import "log"
 import "flag"
